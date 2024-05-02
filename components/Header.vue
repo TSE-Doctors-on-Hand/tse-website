@@ -10,8 +10,8 @@
         <span class="text-2xl font-semibold text-white">Doctors On Hand</span>
       </li>
       <li class="w-48 flex items-center justify-end">
-        <a class="text-white max-sm:hidden font-medium pr-4 content-center items-center mx-auto justify-end">
-          <Icon name="mdi:account" color="white" class="w-8 h-8 rounded-full" /> My Account</a>
+        <a href="/" class="text-white max-sm:hidden font-medium pr-4 content-center items-center mx-auto justify-end">
+           My Account <Icon name="mdi:account" color="white" class="w-8 h-8 rounded-full" /></a>
       </li>
     </ul>
   </nav>
