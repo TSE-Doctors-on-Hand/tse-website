@@ -6,6 +6,8 @@
 .cache
 dist
 
+*.iml
+
 # Node dependencies
 node_modules
 
