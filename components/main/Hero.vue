@@ -6,7 +6,7 @@
         fast with Doctors on hand</h1>
       <p class="mb-8 text-lg font-normal text-[#E8EDEE] lg:text-xl sm:px-16 xl:px-48 ">Doctors on hand aims to
         revolutionise the way GP appointments are booked matching you to your symptoms to a suited specialist.</p>
-      <a href="https://google.com"
+      <a href="/form"
          class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-[#005EB8] bg-gray-100 rounded-full ">
         <span class="text-lg font-medium px-4 py-1.5 mr-3">Enter your symptoms</span>
         <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
