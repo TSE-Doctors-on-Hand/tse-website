@@ -8,7 +8,6 @@
 
 </template>
 <script setup lang="ts">
-import EmergencyBanner from "~/components/main/EmergencyBanner.vue";
 import Hero from "~/components/main/Hero.vue";
 import PlatformInfo from "~/components/main/PlatformInfo.vue";
 import WhyPlatform from "~/components/main/WhyPlatform.vue";
