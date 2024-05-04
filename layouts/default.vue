@@ -1,11 +1,8 @@
 <template>
   <div class="global-container font-spacegrotesk">
-    <header class="fixed w-full">
+    <main>
       <Header />
       <MainEmergencyBanner />
-    </header>
-    <main>
-      <div class="p-7" />
       <slot />
     </main>
     <footer>
