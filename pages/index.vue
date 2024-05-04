@@ -1,15 +1,10 @@
 <template>
 
-  <Header/>
-
-  <EmergencyBanner/>
   <Hero />
 
   <PlatformInfo />
   <WhyPlatform />
   <Download />
-
-  <Footer/>
 
 </template>
 <script setup lang="ts">
