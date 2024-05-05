@@ -53,6 +53,11 @@
   </div>
 </template>
 <script lang="ts" setup>
+
+definePageMeta({
+  middleware: 'guest-only'
+})
+
 import type { LoginRequest } from "~/types/api/auth/login";
 
 import { auth } from "~/composables/auth";
