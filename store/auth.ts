@@ -10,7 +10,7 @@ export const authStore = defineStore({
             this.token = token
             localStorage.setItem('token', JSON.stringify(token))
         },
-        getToken(): string {
+        getToken(): string | null {
             return this.token
         },
         logout() {
