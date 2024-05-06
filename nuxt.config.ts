@@ -5,8 +5,16 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         'nuxt-icon',
         '@nuxt/content',
-        '@pinia/nuxt'
-    ]
+        '@pinia/nuxt',
+        'nuxt-primevue'
+    ],
+    primevue: {
+        cssLayerOrder: "tailwind-base, primevue, tailwind-utilities",
+        components: {
+            exclude: ["Editor", "Chart"]
+        }
+    },
+    css: ["primevue/resources/themes/lara-light-indigo/theme.css"]
 
 })
 

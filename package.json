@@ -15,11 +15,13 @@
     "axios": "^1.6.8",
     "nuxt": "^3.10.3",
     "pinia": "^2.1.7",
+    "primevue": "^3.52.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.4",
-    "nuxt-icon": "^0.6.10"
+    "nuxt-icon": "^0.6.10",
+    "nuxt-primevue": "^0.3.1"
   }
 }
