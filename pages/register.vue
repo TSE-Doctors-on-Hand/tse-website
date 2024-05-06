@@ -105,11 +105,12 @@
 
 <script lang="ts">
 
-import type {LoginRequest} from "~/types/api/auth/login.js";
+definePageMeta({
+  middleware: 'guest-only'
+})
+
 import {auth} from "~/composables/auth.js";
 import type {RegisterRequest} from "~/types/api/auth/register";
-
-const PHONE_REGEX = RegExp("(?:\\+44|0) ?(?:\\d{3} ?\\d{3} ?\\d{4}|\\d{4} ?\\d{3} ?\\d{3}|\\d{2} ?\\d{4} ?\\d{4})")
 
 const registerFail = ref()
 
