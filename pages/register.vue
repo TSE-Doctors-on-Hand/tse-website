@@ -57,7 +57,7 @@
             <label for="lname">Email Address</label>
           </FloatLabel>
           <FloatLabel>
-            <SelectButton v-model="sex" :options="sexes" aria-labelledby="basic"/>
+            <SelectButton v-model="sex" :options="sexes" option-label="name" aria-labelledby="basic"/>
           </FloatLabel>
         </InputGroup>
 
