@@ -47,6 +47,8 @@ export const auth = () => {
             fail = true
         })
 
+        return fail
+
     }
 
     return {

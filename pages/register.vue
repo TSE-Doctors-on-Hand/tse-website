@@ -153,6 +153,10 @@ export default {
 
       auth().register(request).then((bool) => {
         registerFail.value = bool
+
+        if(!bool) {
+          this.$router.push("/service/consult")
+        }
       })
 
     }
