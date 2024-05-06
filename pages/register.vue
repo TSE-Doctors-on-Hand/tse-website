@@ -2,65 +2,163 @@
 
   <div class="flex min-h-full flex-col px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register with Doctors on Hand</h2>
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register with Doctors on
+        Hand</h2>
     </div>
 
-    <form class=" sm:mx-auto sm:w-full sm:max-w-md">
-      <div class="grid gap-4 mb-4 sm:grid-cols-2">
-        <div>
-          <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-          <input type="text" name="username" id="username" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Ex. johnb68">
-        </div>
-        <div>
-          <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-          <input type="text" name="brand" id="brand" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-        </div>
-        <div>
-          <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-          <input type="text" name="fname" id="fname" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Ex. John">
-        </div>
-        <div>
-          <label for="lname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-          <input type="text" name="lname" id="lname" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Bloggs">
-        </div>
-        <div>
-          <label for="sex" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sex</label>
-          <select id="sex" name="sex" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            <option value="0">Male</option>
-            <option value="1">Female</option>
-          </select>
-        </div>
-        <div>
-          <label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
-          <input type="date" name="dob" id="dob" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Ex. John">
-        </div>
-        <div>
-          <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-          <input type="email" name="email" id="email" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="john@somewhere.com">
-        </div>
-        <div>
-          <label for="nok" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Next of Kin</label>
-          <input type="text" name="nok" id="nok" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="john@somewhere.com">
-        </div>
-        <div>
-          <label for="pronouns" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pronouns</label>
-          <input type="text" maxlength="17" value="" name="pronouns" id="pronouns" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Ex. He/Him">
-        </div>
-        <div>
-          <label for="pronouns" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pronouns</label>
-          <input type="text" maxlength="17" value="" name="pronouns" id="pronouns" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Ex. He/Him">
-        </div>
-        <div>
-          <label for="telephone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telephone</label>
-          <input type="tel" maxlength="17" value="" name="telephone" id="telephone" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="+44 1234 567 890">
-        </div>
-        <div>
-          <label for="postcode" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Postcode</label>
-          <input type="text" minlength="6" maxlength="7" value="" name="telephone" id="telephone" class="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="LN6 7DQ">
-        </div>
+    <form class=" sm:mx-auto sm:w-full sm:max-w-md py-12" @submit.prevent="handleRegister">
+      <div class="grid gap-12 mb-4">
+
+        <InputGroup>
+          <FloatLabel>
+            <InputText id="username" v-model="username"/>
+            <label for="username">Username</label>
+          </FloatLabel>
+
+          <FloatLabel>
+            <Password id="password" v-model="password">
+              <label for="password">Password</label>
+              <template #header>
+                <h6>Pick a password</h6>
+              </template>
+              <template #footer>
+                <Divider/>
+                <p class="mt-2">Suggestions</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                  <li>At least one lowercase</li>
+                  <li>At least one uppercase</li>
+                  <li>At least one numeric</li>
+                  <li>Minimum 8 characters</li>
+                </ul>
+              </template>
+            </Password>
+            <label for="password">Password</label>
+          </FloatLabel>
+
+        </InputGroup>
+
+        <InputGroup>
+          <FloatLabel>
+            <InputText v-model="fname"/>
+            <label for="fname">First Name</label>
+          </FloatLabel>
+
+          <FloatLabel>
+            <InputText v-model="lname"/>
+            <label for="lname">Last Name</label>
+          </FloatLabel>
+
+        </InputGroup>
+
+
+        <InputGroup>
+          <FloatLabel>
+            <InputText v-model="email"/>
+            <label for="lname">Email Address</label>
+          </FloatLabel>
+          <FloatLabel>
+            <SelectButton v-model="sex" :options="sexes" aria-labelledby="basic"/>
+          </FloatLabel>
+        </InputGroup>
+
+
+        <InputGroup>
+          <FloatLabel>
+            <Calendar v-model="dob" inputId="birth_date" date-format="dd/mm/yy" />
+            <label for="birth_date">Birth Date</label>
+          </FloatLabel>
+          <FloatLabel>
+            <InputText placeholder="Next of Kin" v-model="nok"/>
+            <label for="nok">Next of Kin</label>
+          </FloatLabel>
+
+        </InputGroup>
+
+        <InputGroup>
+          <FloatLabel>
+            <InputText placeholder="Pronouns" v-model="pronouns"/>
+            <label for="nok">Pronouns</label>
+          </FloatLabel>
+          <FloatLabel>
+            <InputMask id="basic" v-model="phone" mask="+44 9999-999-999" placeholder="+44 0000-000-000"/>
+            <label for="phone">Phone Number</label>
+          </FloatLabel>
+        </InputGroup>
+
+        <InputGroup>
+          <FloatLabel>
+            <InputText v-model="postcode"/>
+            <label for="postcode">Postcode</label>
+          </FloatLabel>
+        </InputGroup>
       </div>
+
+      <div>
+        <button type="submit" class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Sign Up</button>
+      </div>
+
     </form>
 
   </div>
 
 </template>
+
+<script lang="ts">
+
+import type {LoginRequest} from "~/types/api/auth/login.js";
+import {auth} from "~/composables/auth.js";
+import type {RegisterRequest} from "~/types/api/auth/register";
+
+const PHONE_REGEX = RegExp("(?:\\+44|0) ?(?:\\d{3} ?\\d{3} ?\\d{4}|\\d{4} ?\\d{3} ?\\d{3}|\\d{2} ?\\d{4} ?\\d{4})")
+
+const registerFail = ref()
+
+export default {
+
+  data: () => ({
+    sexes: [{ ordinal: 0, name: "Male"}, {ordinal: 1, name:"Female"}],
+    username: "",
+    password: "",
+    fname: "",
+    lname: "",
+    sex: { ordinal: 0, name: "" },
+    dob: "",
+    email: "",
+    nok: "",
+    pronouns: "",
+    phone: "",
+    postcode: "",
+
+  }),
+  methods: {
+
+
+    handleRegister() {
+
+      const date = new Date(this.dob)
+
+      const request: RegisterRequest = {
+        username: this.username,
+        password: this.password,
+        forename: this.fname,
+        surname: this.lname,
+        dateOfBirth: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+        sex: this.sex.ordinal,
+        pronouns: this.pronouns.split("/"),
+        email: this.email,
+        phone: this.phone,
+        postcode: this.postcode,
+        nextOfKin: this.nok
+      }
+
+      auth().register(request).then((bool) => {
+        registerFail.value = bool
+      })
+
+    }
+
+
+  }
+}
+
+</script>

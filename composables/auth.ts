@@ -1,9 +1,9 @@
+import type {LoginRequest} from "~/types/api/auth/login";
 
-import type { LoginRequest } from "~/types/api/auth/login";
-
-import { authStore } from "~/store/auth";
+import {authStore} from "~/store/auth";
 
 import {apiFetch} from "./api";
+import type {RegisterRequest} from "~/types/api/auth/register";
 
 const LOGIN_URL = '/api/auth/login'
 const LOGOUT_URL = '/api/auth/logout'
@@ -13,23 +13,45 @@ export const auth = () => {
 
     const login = async (loginData: LoginRequest) => {
 
-        try {
+        let fail = null
 
-            await apiFetch(LOGIN_URL, {
-                method: 'POST',
-                body: loginData
-            }).then((response => {
-                authStore().setToken(response as string)
+        await apiFetch(LOGIN_URL, {
+            method: 'POST',
+            body: loginData
+        }).then((response => {
+            authStore().setToken(response as string)
 
-                console.log(response)
-            }))
-        } catch (err) {
-            console.error(err)
-            return null
-        }
+            console.log(response)
+            fail = false
+        })).catch((error) => {
+            console.log(error)
+            fail = true
+        })
+
+        return fail
     }
+
+    const register = async (registerData: RegisterRequest) => {
+
+        let fail = null
+        await apiFetch(REGISTER_URL, {
+            method: 'POST',
+            body: registerData
+        }).then((response) => {
+            authStore().setToken(response as string)
+
+            console.log(response)
+            fail = false
+        }).catch((error) => {
+            console.log(error)
+            fail = true
+        })
+
+    }
+
     return {
-        login
+        login,
+        register
     }
 
 }
