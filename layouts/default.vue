@@ -1,5 +1,5 @@
 <template>
-  <div class="global-container font-spacegrotesk mx-auto">
+  <div class="global-container font-spacegrotesk mx-auto bg-white text-black">
     <main>
       <Header />
       <MainEmergencyBanner />
