@@ -10,7 +10,13 @@
         <span class="text-2xl font-semibold text-white">Doctors On Hand</span>
       </li>
       <li class="w-48 flex items-center justify-end">
-        <a href="/" class="text-white max-sm:hidden font-medium pr-4 content-center items-center mx-auto justify-end">
+        <a v-if="!isLoggedIn" href="/login"
+           class="text-white max-sm:hidden font-medium pr-4 content-center items-center mx-auto justify-end">
+          Sign In
+          <Icon name="mdi:account" color="white" class="w-8 h-8 rounded-full"/>
+        </a>
+        <a v-if="isLoggedIn" href="/"
+           class="text-white max-sm:hidden font-medium pr-4 content-center items-center mx-auto justify-end">
           My Account
           <Icon name="mdi:account" color="white" class="w-8 h-8 rounded-full"/>
         </a>
@@ -19,6 +25,20 @@
   </nav>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+
+import {authStore} from "~/store/auth";
+
+export default {
+
+  data: () => {
+    return {
+      isLoggedIn: false
+    }
+  },
+  mounted() {
+    this.isLoggedIn = authStore().hasToken()
+  }
+}
 
 </script>

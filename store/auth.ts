@@ -13,6 +13,9 @@ export const authStore = defineStore({
         getToken(): string | null {
             return this.token
         },
+        hasToken(): boolean {
+            return !!this.token
+        },
         logout() {
             this.token = null
             localStorage.removeItem('token')
