@@ -12,7 +12,7 @@
       <p>Email: {{ data.email }}</p>
       <p>Sex: {{ getSex() }}</p>
       <p>Date of Birth: {{ getDateOfBirth() }}</p>
-      //<p>Pronouns: {{ data?.pronouns.join("/") }}</p>
+      <!-- <p>Pronouns: {{ data?.pronouns.join("/") }}</p> -->
       <p>Phone: {{ data.phone }}</p>
       <p>Postcode {{ data.postcode }}</p>
       <p>Next of Kin: {{ data.nextOfKin }}</p>,
