@@ -4,8 +4,5 @@
 import {authStore} from "~/store/auth";
 
 export const apiFetch = $fetch.create({
-    baseURL: "http://localhost:8080",
-    headers: {
-        Token: authStore().hasToken() ? authStore().getToken()!! : ""
-    }
+    baseURL: "http://localhost:8080"
 })
