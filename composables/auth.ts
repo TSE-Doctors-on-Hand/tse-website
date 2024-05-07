@@ -51,9 +51,14 @@ export const auth = () => {
 
     }
 
+    const logout = async () => {
+        authStore().logout()
+    }
+
     return {
         login,
-        register
+        register,
+        logout
     }
 
 }
