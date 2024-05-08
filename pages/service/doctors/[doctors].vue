@@ -118,6 +118,8 @@ Page for Displaying Doctors based on selected symptoms, distance and location
 
 <script setup lang="ts">
 
+import userOnly from "~/middleware/user-only";
+
 definePageMeta({
   middleware: 'user-only'
 })
@@ -129,6 +131,7 @@ import {type MatchedDoctor} from "~/types/api/doctor/doctor";
 import type {MatchRequest} from "~/types/api/doctor/match";
 import {apiFetch} from "~/composables/api";
 import {authStore} from "~/store/auth";
+import { user } from "~/composables/user"
 import type {Ref} from "vue";
 import type {Symptom} from "~/types/api/symptom/symptom";
 
@@ -144,6 +147,8 @@ const selectAll = ref()
 const distance = ref()
 const atHome = ref()
 const postcode: Ref<string | null> = ref(null)
+
+const userData = ref()
 
 /**
  * Doctors -> once loaded from onMounted
@@ -169,6 +174,10 @@ onMounted(() => {
       }
     }
   })
+
+  user().get().then((response => {
+    userData.value = response
+  }))
 
   atHome.value = matchRequest.postcode == null
   if (matchRequest.postcode != null) {
@@ -218,7 +227,10 @@ const handleNewParameters = () => {
 }
 
 const generateMailTo = (doctor: MatchedDoctor) => {
-  return `mailto:${doctor.email}`
+
+  const symptoms = selectedSymptoms.value.map((symptom) => symptom.name).join("%0D%0A- ")
+
+  return `mailto:${doctor.email}?subject=Doctors On Hand Consultation&body=Hello Dr. ${doctor.surname},%0D%0A%0D%0AI would like to request a consultation regarding my symptoms: %0D%0A- ${symptoms}. %0D%0A%0D%0AKindest Regards,%0D%0A${userData.value.forename} ${userData.value.surname}`
 }
 
 /**
