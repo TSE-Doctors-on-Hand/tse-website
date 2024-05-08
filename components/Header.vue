@@ -10,14 +10,9 @@
         <span class="text-2xl font-semibold text-white">Doctors On Hand</span>
       </li>
       <li class="w-48 flex items-center justify-end">
-        <a v-if="!isLoggedIn" href="/login"
-           class="text-white max-sm:hidden font-medium pr-4 content-center items-center mx-auto justify-end">
-          Sign In
-          <Icon name="mdi:account" color="white" class="w-8 h-8 rounded-full"/>
-        </a>
-        <a v-if="isLoggedIn" href="/"
-           class="text-white max-sm:hidden font-medium pr-4 content-center items-center mx-auto justify-end">
-          My Account
+        <a @click="headerUrl()"
+           class="text-white max-sm:hidden font-medium pr-4 content-center items-center mx-auto justify-end hover:text-gray-300">
+          {{ isLoggedIn ? 'My Account' : 'Sign in' }}
           <Icon name="mdi:account" color="white" class="w-8 h-8 rounded-full"/>
         </a>
       </li>
@@ -28,6 +23,7 @@
 <script lang="ts">
 
 import {authStore} from "~/store/auth";
+import {navigateTo} from "#app";
 
 export default {
 
@@ -38,6 +34,17 @@ export default {
   },
   mounted() {
     this.isLoggedIn = authStore().hasToken()
+  },
+  methods: {
+
+    headerUrl() {
+      if (this.isLoggedIn) {
+        navigateTo("/account")
+      } else {
+        navigateTo("/login")
+      }
+    }
+
   }
 }
 

@@ -31,9 +31,6 @@
               <div v-if="loggedInFail">
                 <p>Login Failed!</p>
               </div>
-              <div v-if="!loggedInFail">
-                <p>Login Successful!</p>
-              </div>
             </div>
 
 
