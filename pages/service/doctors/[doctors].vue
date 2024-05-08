@@ -169,6 +169,8 @@ onMounted(() => {
   }).then((response) => {
     const data = response as MatchedDoctor[]
     doctors = data.sort((a, b) => b.similarity - a.similarity)
+
+    doctors = doctors.filter((doctor) => doctor.similarity != 0)
   })
 
   setTimeout(() => {
