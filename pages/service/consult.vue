@@ -1,10 +1,12 @@
 <template>
   <div>
-    <div class="flex justify-center">
+    <div class="flex justify-center text-center">
       <div class="max-w-md w-full">
         <div class="mb-6"></div>
-        <form @submit.prevent="submitForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div class="relative inline-block text-left">
+        <form @submit.prevent="submitForm" class="bg-white pt-6">
+          <div class="">
+
+            <p class="font-bold text-center py-3">Find a Doctor</p>
 
             <div class="max-w-md w-full ">
               <div class="card flex justify-content-center">
@@ -15,8 +17,6 @@
                     optionLabel="name"
                     placeholder="Select your Symptoms"
                     display="chip"
-
-                    max-selected-labels="3"
                     class="w-full md:w-20rem"
                     @selectall-change="onSelectAllChange($event)"
                     @change="onChange($event)"
@@ -24,37 +24,30 @@
                 />
               </div>
             </div>
-
-
             <!-- Other form fields -->
-            <div class="">
+            <div class="pt-5">
               <p>Are you at home?</p>
-            </div>
-            <div class="card flex justify-content-center">
-              <div class="card flex justify-content-center">
-                <SelectButton v-model="home" :options="options" option-label="name" aria-labelledby="basic"/>
-              </div>
+              <ToggleButton v-model="home" class="h-12 w-full pt-3" onLabel="At Home" offLabel="Not At Home"/>
             </div>
 
-            <div v-if="!home.state">
+
+            <div v-if="!home" class="pt-5">
               <p>Please enter your current postcode:</p>
-              <FloatLabel>
-                <InputText v-model="postcode"/>
-                <label for="postcode">Postcode</label>
-              </FloatLabel>
-            </div>
-            <div class="mb-6"></div>
-
-            <div class="card flex justify-content-center py-6">
-              <div class="w-14rem">
-                <p>Distance to Doctors (km):</p>
-                <InputText v-model.number="distance" class="w-full mb-3" />
-                <Slider v-model="distance" :min="5" :max="50" :step="5" class="w-full" />
-              </div>
+              <InputText v-model="postcode" class="w-full"/>
             </div>
 
-            <button type="submit"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <div class="card pt-5">
+              <p>Distance to Doctors (km):</p>
+              <InputText v-model.number="distance" class="mb-3 w-full"/>
+            </div>
+            <div class="pt-2">
+              <Slider v-model="distance" :min="5" :max="50" :step="5" class="w-full"/>
+            </div>
+          </div>
+
+          <div class="pt-5">
+            <button :on-click="submitForm"
+                    class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg px-5 py-2.5 text-center w-full">
               Next
             </button>
           </div>
@@ -68,68 +61,54 @@
 
 </template>
 
-<script>
+<script setup lang="ts">
+import type {MatchRequest} from "~/types/api/doctor/match";
+
 definePageMeta({
   middleware: 'user-only'
 })
 
-import {ref} from 'vue';
+import {type Ref, ref} from 'vue';
+import type {Symptom} from "~/types/api/symptom/symptom";
 
-const selectedSymptoms = ref()
+const selectedSymptoms: Ref<Symptom[]> = ref([])
+const symptoms: Ref<Symptom[] | undefined> = ref()
+const selectAll = ref()
+const distance = ref(5)
+const home = ref()
+const postcode: Ref<string | null> = ref(null)
 
-export default {
+onMounted(() => {
+  apiFetch('/api/symptom/all').then((response) => {
+    symptoms.value = response as Symptom[]
+  })
+})
 
-  data: () => ({
-    options: [{state: true, name: "Yes, at home"}, {state: false, name: "No, somewhere else"}],
-    selectedSymptoms: null,
-    isDropdownOpen: false,
-    selectedUsers: [],
-    users: [
-      {name: 'Fever'},
-      {name: 'Cough'},
-      {name: 'Shortness of Breath'},
-      {name: 'Muscle Aches'},
-      {name: 'Headache'},
-      {name: 'Sore Throat'},
-      {name: 'Nausea or Vomiting'},
-      {name: 'Diarrhea'},
-    ],
-    symptoms: [],
-    home: {state: true, name: ""},
-    postcode: "",
-    distance: 5,
-    isAddressInputVisible: false,
+const submitForm = () => {
 
-  }),
-  mounted() {
-    apiFetch('/api/symptom/all').then((response) => {
-      this.symptoms = response
-    })
-  },
-  methods: {
-    toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen;
-    },
-    submitForm() {
-      if (this.location === 'not_home') {
-        // Show address input fields
-        this.isAddressInputVisible = true;
-      } else {
-        // Handle form submission for home location
-        // You can add your logic here
-        console.log('Submitting form for home location');
-      }
-    },
-
-    onSelectAllChange(event) {
-      this.selectedItems = event.checked ? this.items.map((item) => item.value) : [];
-      this.selectAll = event.checked;
-    },
-    onChange(event) {
-      this.selectAll = event.value.length === this.items.length;
-    }
+  const request: MatchRequest = {
+    symptoms: selectedSymptoms.value.map((item) => item.id),
+    postcode: postcode.value,
+    range: distance.value,
+    limit: null
   }
+
+  const params = encodeURIComponent(JSON.stringify(request))
+
+  navigateTo({
+    path: `/service/doctors/${params}`
+  })
+
 }
+
+const onSelectAllChange = (event: any) => {
+  selectedSymptoms.value = event.checked ? (symptoms.value as Symptom[]) : [];
+  selectAll.value = event.checked;
+};
+const onChange = (event: any) => {
+  selectAll.value = event.value.length === (symptoms.value as Symptom[]).length;
+}
+
 </script>
 
 <style>
