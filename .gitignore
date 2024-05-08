@@ -5,6 +5,8 @@
 .nitro
 .cache
 dist
+.vs/
+.vscode/
 
 *.iml
 
