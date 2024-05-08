@@ -111,6 +111,10 @@ Page for Displaying Doctors based on selected symptoms, distance and location
 
 <script setup lang="ts">
 
+definePageMeta({
+  middleware: 'user-only'
+})
+
 /**
  * Imports for assorted functions used
  */
