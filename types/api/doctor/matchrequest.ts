@@ -1,5 +1,5 @@
 export interface MatchRequest {
-    symptoms: number[];
     postcode: string | null;
-    distance: number;
+    range: number;
+    symptoms: number[];
 }

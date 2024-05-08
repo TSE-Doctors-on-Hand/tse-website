@@ -15,8 +15,6 @@
                     optionLabel="name"
                     placeholder="Select your Symptoms"
                     display="chip"
-
-                    max-selected-labels="3"
                     class="w-full md:w-20rem"
                     @selectall-change="onSelectAllChange($event)"
                     @change="onChange($event)"
@@ -48,8 +46,8 @@
             <div class="card flex justify-content-center py-6">
               <div class="w-14rem">
                 <p>Distance to Doctors (km):</p>
-                <InputText v-model.number="distance" class="w-full mb-3" />
-                <Slider v-model="distance" :min="5" :max="50" :step="5" class="w-full" />
+                <InputText v-model.number="distance" class="w-full mb-3"/>
+                <Slider v-model="distance" :min="5" :max="50" :step="5" class="w-full"/>
               </div>
             </div>
 
@@ -69,31 +67,23 @@
 </template>
 
 <script>
+import {doctor} from "~/composables/doctor";
+
 definePageMeta({
   middleware: 'user-only'
 })
 
 import {ref} from 'vue';
 
-const selectedSymptoms = ref()
+const selectedSymptoms = ref();
 
 export default {
 
   data: () => ({
     options: [{state: true, name: "Yes, at home"}, {state: false, name: "No, somewhere else"}],
     selectedSymptoms: null,
+    selectAll: false,
     isDropdownOpen: false,
-    selectedUsers: [],
-    users: [
-      {name: 'Fever'},
-      {name: 'Cough'},
-      {name: 'Shortness of Breath'},
-      {name: 'Muscle Aches'},
-      {name: 'Headache'},
-      {name: 'Sore Throat'},
-      {name: 'Nausea or Vomiting'},
-      {name: 'Diarrhea'},
-    ],
     symptoms: [],
     home: {state: true, name: ""},
     postcode: "",
@@ -102,13 +92,14 @@ export default {
 
   }),
   mounted() {
+    // this.getUserData();
     apiFetch('/api/symptom/all').then((response) => {
-      this.symptoms = response
+      this.symptoms = response;
     })
   },
   methods: {
     toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen;
+      this.isDropdownOpen = !this.isDropdownOpen
     },
     submitForm() {
       if (this.location === 'not_home') {
@@ -118,16 +109,43 @@ export default {
         // Handle form submission for home location
         // You can add your logic here
         console.log('Submitting form for home location');
+        this.goToNextPage()
       }
     },
 
     onSelectAllChange(event) {
-      this.selectedItems = event.checked ? this.items.map((item) => item.value) : [];
-      this.selectAll = event.checked;
+      this.selectedSymptoms = event.checked ? this.symptoms.map((item) => item.value) : []
+      this.selectAll = event.checked
     },
     onChange(event) {
-      this.selectAll = event.value.length === this.items.length;
+      this.selectAll = event.value.length === this.symptoms.length
+    },
+
+    goToNextPage() {
+      let realPostcode = this.postcode
+
+      if (realPostcode=== "") {
+        realPostcode = "Unknown"
+      }
+
+      let matchRequest = {
+        symptoms: this.symptoms,
+        postcode: realPostcode,
+        range: this.distance,
+        limit: 15
+      }
+
+      try {
+
+        doctor().match(matchRequest).then((response) => {
+          console.log(response)
+        })
+        navigateTo("/service/doctors")
+      } catch (error) {
+        console.error("Failed to get doctor match", error);
+      }
     }
+
   }
 }
 </script>

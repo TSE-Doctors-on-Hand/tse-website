@@ -1,7 +1,8 @@
 
 
 import { apiFetch } from './api';
-import type {MatchRequest} from "~/types/api/doctor/match";
+import type {MatchRequest} from "~/types/api/doctor/matchrequest";
+import type {MatchDoctor} from "~/types/api/doctor/matchdoctor";
 
 const DOCTOR_URL = "/api/doctor/"
 const MATCH_URL = `${DOCTOR_URL}/match/`
@@ -10,15 +11,15 @@ export const doctor = () => {
 
     const match = async (matchRequest: MatchRequest) => {
 
-        await apiFetch(MATCH_URL, {
+        return await apiFetch(MATCH_URL, {
             method: 'GET',
             body: matchRequest,
-        }).then((response) => {
-
-
-
         })
 
+    }
+
+    return {
+        match
     }
 
 }
