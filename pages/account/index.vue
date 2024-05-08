@@ -5,22 +5,37 @@
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Your Details</h2>
     </div>
 
-    <div class="py-5">
-      <p>Forename: {{ data.forename }}</p>
-      <p>Surname: {{ data.surname }}</p>
-      <p>Username: {{ data.username }} (UID: {{ data.id }})</p>
-      <p>Email: {{ data.email }}</p>
-      <p>Sex: {{ getSex() }}</p>
-      <p>Date of Birth: {{ getDateOfBirth() }}</p>
-      <!-- <p>Pronouns: {{ data?.pronouns.join("/") }}</p> -->
-      <p>Phone: {{ data.phone }}</p>
-      <p>Postcode {{ data.postcode }}</p>
-      <p>Next of Kin: {{ data.nextOfKin }}</p>,
+    <div class="flex justify-center">
+      <div class="flex-col">
+        <div class="max-w-lg rounded py-5">
+          <div class="px-6 py-4 border">
+            <div class="font-bold text-xl mb-2">{{ data.forename }} {{ data.surname }}</div>
+            <p class="text-gray-700 text-base"><b>Username:</b> {{ data.username }}</p>
+            <p class="text-gray-700 text-base"><b>Email:</b> {{ data.username }}</p>
+            <p class="text-gray-700 text-base"><b>Phone:</b> {{ data.phone }}</p>
+            <p class="text-gray-700 text-base"><b>Postcode:</b> {{ data.postcode }}</p>
+          </div>
+
+          <div class="border">
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2">Your Details</div>
+              <p class="text-gray-700 text-base"><b>Sex:</b> {{ getSex() }}</p>
+              <p class="text-gray-700 text-base"><b>Date of Birth:</b> {{ getDateOfBirth() }}</p>
+              <p class="text-gray-700 text-base"><b>Next of Kin:</b> {{ data.nextOfKin }}</p>
+            </div>
+          </div>
+          <div class="border-t py-6">
+            <Button @click="logout" class="w-full">Logout</Button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <Button @click="logout">Logout</Button>
+
 
   </div>
+
+
 
 
 </template>
@@ -37,12 +52,7 @@ import {user} from "~/composables/user.js";
 export default {
 
   data: () => ({
-    data: {},
-    items: [
-      {label: "Your Details"},
-      {label: "Your Appointments"}
-    ],
-    settings: ""
+    data: {}
   }),
   mounted() {
     this.getUserData()
@@ -55,7 +65,6 @@ export default {
       } else {
         return "Female"
       }
-      return "Alien"
     },
 
     getDateOfBirth() {
