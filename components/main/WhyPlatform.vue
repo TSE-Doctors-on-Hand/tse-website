@@ -36,7 +36,3 @@ const boxes = [
 ]
 
 </script>
-
-<style scoped>
-
-</style>

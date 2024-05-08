@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <section class="bg-white">
     <div class="container w-full max-w-5xl mx-auto space-y-4">
@@ -16,7 +12,3 @@
 
   </section>
 </template>
-
-<style scoped>
-
-</style>

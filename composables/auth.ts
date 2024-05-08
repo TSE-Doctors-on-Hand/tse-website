@@ -6,7 +6,6 @@ import {apiFetch} from "./api";
 import type {RegisterRequest} from "~/types/api/auth/register";
 
 const LOGIN_URL = '/api/auth/login'
-const LOGOUT_URL = '/api/auth/logout'
 const REGISTER_URL = '/api/auth/register'
 
 export const auth = () => {

@@ -30,13 +30,7 @@
         </div>
       </div>
     </div>
-
-
-
   </div>
-
-
-
 
 </template>
 
@@ -93,7 +87,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-
-</style>

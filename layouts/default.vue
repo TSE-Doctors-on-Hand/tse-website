@@ -18,6 +18,3 @@
   min-height: 100vh;
 }
 </style>
-<script setup lang="ts">
-
-</script>

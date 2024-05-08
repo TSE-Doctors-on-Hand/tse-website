@@ -28,5 +28,4 @@ const data = computed<LegalPolicy>(() => {
     date: doc.value?.date || 'not-date-available'
   }
 })
-
 </script>

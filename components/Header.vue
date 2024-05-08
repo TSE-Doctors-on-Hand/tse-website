@@ -10,7 +10,7 @@
         <span class="text-2xl font-semibold text-white">Doctors On Hand</span>
       </li>
       <li class="w-48 flex items-center justify-end">
-        <a @click="headerUrl()"
+        <a @click="headerUrl"
            class="text-white max-sm:hidden font-medium pr-4 content-center items-center mx-auto justify-end hover:text-gray-300">
           {{ isLoggedIn ? 'My Account' : 'Sign in' }}
           <Icon name="mdi:account" color="white" class="w-8 h-8 rounded-full"/>
@@ -20,31 +20,22 @@
   </nav>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 
 import {authStore} from "~/store/auth";
 import {navigateTo} from "#app";
 
-export default {
+const isLoggedIn = ref()
 
-  data: () => {
-    return {
-      isLoggedIn: false
-    }
-  },
-  mounted() {
-    this.isLoggedIn = authStore().hasToken()
-  },
-  methods: {
+onMounted(() => {
+  isLoggedIn.value = authStore().hasToken()
+})
 
-    headerUrl() {
-      if (this.isLoggedIn) {
-        navigateTo("/account")
-      } else {
-        navigateTo("/login")
-      }
-    }
-
+const headerUrl = () => {
+  if (isLoggedIn.value) {
+    navigateTo("/account")
+  } else {
+    navigateTo("/login")
   }
 }
 

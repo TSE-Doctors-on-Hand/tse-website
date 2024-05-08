@@ -205,8 +205,3 @@ const onChange = (event: any) => {
 }
 
 </script>
-
-<style scoped>
-
-
-</style>
