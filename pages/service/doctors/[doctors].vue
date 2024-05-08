@@ -181,7 +181,7 @@ onMounted(() => {
   })
 
   setTimeout(() => {
-    //loading.value = false
+    loading.value = false
   }, 1000)
 })
 
