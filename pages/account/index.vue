@@ -43,24 +43,36 @@ This is where the user can view their details and logout of the site
 
 <script lang="ts">
 
+/**
+ * Imports for assorted functions used
+ */
 import {navigateTo} from "#app";
+import {user} from "~/composables/user";
 
+/**
+ * Prevents non-logged in users from accessing the page
+ */
 definePageMeta({
   middleware: 'user-only'
 })
 
-import {user} from "~/composables/user.js";
-
 export default {
 
+  // Represents the Users Data
   data: () => ({
     data: {}
   }),
+  /**
+   * Fetch data on page load for the user
+   */
   mounted() {
     this.getUserData()
   },
   methods: {
 
+    /**
+     * Take the Sex Ordinal and turn it into a human-readable format
+     */
     getSex() {
       if (this.data.sex == 0) {
         return "Male"
@@ -69,6 +81,9 @@ export default {
       }
     },
 
+    /**
+     * Take the Date Of Birth timestamp and turn it into a human-readable format
+     */
     getDateOfBirth() {
 
       const date = new Date(this.data.dateOfBirth)
@@ -76,15 +91,18 @@ export default {
       return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
     },
 
+    /**
+     * Function to fetch the users' data on page load
+     */
     getUserData() {
-      try {
-        user().get().then((response) => {
-          this.data = response as {}
-        })
-      } catch (exception) {
-      }
+      user().get().then((response) => {
+        this.data = response as {}
+      })
     },
 
+    /**
+     * Function to quick-access removing the users' data and return them to home
+     */
     logout() {
       console.log("logging out")
       auth().logout()
