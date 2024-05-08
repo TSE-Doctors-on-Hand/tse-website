@@ -1,3 +1,7 @@
+<!--
+Represents the /account page
+This is where the user can view their details and logout of the site
+-->
 <template>
 
   <div class="flex flex-col px-6 mx-auto max-w-5xl justify-content-center items-center">
@@ -9,6 +13,7 @@
       <div class="flex-col">
         <div class="max-w-lg rounded py-5">
           <div class="px-6 py-4 border">
+            <!-- General Information about the user which is not sensitive -->
             <div class="font-bold text-xl mb-2">{{ data.forename }} {{ data.surname }}</div>
             <p class="text-gray-700 text-base"><b>Username:</b> {{ data.username }}</p>
             <p class="text-gray-700 text-base"><b>Email:</b> {{ data.username }}</p>
@@ -18,6 +23,7 @@
 
           <div class="border">
             <div class="px-6 py-4">
+              <!-- Sensitive Data about the user - Sex, Date of Birth and Next of Kin-->
               <div class="font-bold text-xl mb-2">Your Details</div>
               <p class="text-gray-700 text-base"><b>Sex:</b> {{ getSex() }}</p>
               <p class="text-gray-700 text-base"><b>Date of Birth:</b> {{ getDateOfBirth() }}</p>
@@ -25,6 +31,7 @@
             </div>
           </div>
           <div class="border-t py-6">
+            <!-- A button to allow the user to logout of the website -->
             <Button @click="logout" class="w-full">Logout</Button>
           </div>
         </div>
@@ -35,6 +42,7 @@
 </template>
 
 <script lang="ts">
+
 import {navigateTo} from "#app";
 
 definePageMeta({
