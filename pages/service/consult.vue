@@ -70,8 +70,6 @@ Page for initial patient consult - They enter their details before first doctor 
 </template>
 
 <script setup lang="ts">
-import type {MatchRequest} from "~/types/api/doctor/match";
-
 definePageMeta({
   middleware: 'user-only'
 })
@@ -81,6 +79,7 @@ definePageMeta({
  */
 import {type Ref, ref} from 'vue';
 import type {Symptom} from "~/types/api/symptom/symptom";
+import type {MatchRequest} from "~/types/api/doctor/match";
 
 /**
  * References to user data inputted
