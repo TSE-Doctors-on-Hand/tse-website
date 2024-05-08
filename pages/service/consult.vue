@@ -1,3 +1,6 @@
+<!--
+Page for initial patient consult - They enter their details before first doctor fetch takes place.
+-->
 <template>
   <div>
     <div class="flex justify-center text-center">
@@ -8,6 +11,7 @@
 
             <p class="font-bold text-center py-3">Find a Doctor</p>
 
+            <!-- Symptoms Dropdown box with search function -->
             <div class="max-w-md w-full ">
               <div class="card flex justify-content-center">
                 <MultiSelect
@@ -24,28 +28,32 @@
                 />
               </div>
             </div>
-            <!-- Other form fields -->
+
+            <!-- This section finds out if the patient is near their home, if such, they will not be asked for a postcode. -->
             <div class="pt-5">
               <p>Are you at home?</p>
               <ToggleButton v-model="home" class="h-12 w-full pt-3" onLabel="At Home" offLabel="Not At Home"/>
             </div>
 
 
+            <!-- If they are not at home, ask them for their postcode -->
             <div v-if="!home" class="pt-5">
               <p>Please enter your current postcode:</p>
               <InputText v-model="postcode" class="w-full"/>
             </div>
 
+            <!-- Slider for the distance from the postcode inputted / their postcode -->
             <div class="card pt-5">
               <p>Distance to Doctors (km):</p>
               <InputText v-model.number="distance" class="mb-3 w-full"/>
             </div>
             <div class="pt-2">
-              <Slider v-model="distance" :min="5" :max="50" :step="5" class="w-full"/>
+              <Slider v-model="distance" :min="5" :max="100" :step="5" class="w-full"/>
             </div>
           </div>
 
           <div class="pt-5">
+            <!-- Button to move them to the doctors page -->
             <button :on-click="submitForm"
                     class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg px-5 py-2.5 text-center w-full">
               Next
@@ -68,9 +76,15 @@ definePageMeta({
   middleware: 'user-only'
 })
 
+/**
+ * Imports for assorted functions used
+ */
 import {type Ref, ref} from 'vue';
 import type {Symptom} from "~/types/api/symptom/symptom";
 
+/**
+ * References to user data inputted
+ */
 const selectedSymptoms: Ref<Symptom[]> = ref([])
 const symptoms: Ref<Symptom[] | undefined> = ref()
 const selectAll = ref()
@@ -78,12 +92,18 @@ const distance = ref(5)
 const home = ref()
 const postcode: Ref<string | null> = ref(null)
 
+/**
+ * Fetch data on page load for symptoms in the dropdown bar
+ */
 onMounted(() => {
   apiFetch('/api/symptom/all').then((response) => {
     symptoms.value = response as Symptom[]
   })
 })
 
+/**
+ * Function to submit the form and redirect the user to the slug page and fetch the doctors
+ */
 const submitForm = () => {
 
   const request: MatchRequest = {
@@ -101,6 +121,9 @@ const submitForm = () => {
 
 }
 
+/**
+ * Functions for Select all and Selection attributes on dropdown menu
+ */
 const onSelectAllChange = (event: any) => {
   selectedSymptoms.value = event.checked ? (symptoms.value as Symptom[]) : [];
   selectAll.value = event.checked;
