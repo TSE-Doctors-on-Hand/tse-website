@@ -3,10 +3,13 @@ Page for Displaying Doctors based on selected symptoms, distance and location
 -->
 <template>
 
+
   <!-- When the doctors are still being fetched, display loading screen -->
-  <div v-if="loading" class="py-10 flex justify-center text-center">
-    <ProgressSpinner/>
-    <p class="text-bold py-2">Finding your Doctors...</p>
+  <div v-if="loading" class="flex flex-col h-full justify-center items-center">
+    <div class="flex justify-center text-center">
+      <ProgressSpinner/>
+    </div>
+    <p class="font-bold text-4xl text-gray-500 py-10 text-center">Finding your Doctors...</p>
   </div>
 
   <div v-else>
@@ -68,7 +71,10 @@ Page for Displaying Doctors based on selected symptoms, distance and location
     <!-- Creates a card for the doctors information and location -->
     <div class="flex justify-center">
       <div class="flex-col">
-        <div class="max-w-lg rounded border py-5" v-for="doctor in doctors">
+        <div v-for="doctor in doctors" class="pb-5">
+
+
+        <div class="max-w-lg rounded border py-5">
           <div class="px-6 py-4">
             <div class="font-bold text-xl mb-2">Dr. {{ doctor.forename }} {{ doctor.surname }}</div>
             <p class="text-gray-700 text-base">
@@ -93,6 +99,7 @@ Page for Displaying Doctors based on selected symptoms, distance and location
                 <p class="text-gray-700 text-base py-2">Similarity: {{ (doctor.similarity * 100).toFixed(2) }}%</p>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -174,7 +181,7 @@ onMounted(() => {
   })
 
   setTimeout(() => {
-    loading.value = false
+    //loading.value = false
   }, 1000)
 })
 
