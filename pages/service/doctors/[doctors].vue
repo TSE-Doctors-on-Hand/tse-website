@@ -170,6 +170,10 @@ onMounted(() => {
     const data = response as MatchedDoctor[]
     doctors = data.sort((a, b) => b.similarity - a.similarity)
   })
+
+  setTimeout(() => {
+    loading.value = false
+  }, 1000)
 })
 
 /**
