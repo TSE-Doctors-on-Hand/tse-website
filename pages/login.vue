@@ -55,6 +55,8 @@
 </template>
 <script lang="ts" setup>
 
+import {navigateTo} from "#app";
+
 definePageMeta({
   middleware: 'guest-only'
 })
@@ -77,6 +79,11 @@ const handleLogin = () => {
   }
 
   auth().login(userData).then((bool) => {
+
+    if(!bool) {
+      navigateTo("/account")
+    }
+
     loggedInFail.value = bool
   })
 

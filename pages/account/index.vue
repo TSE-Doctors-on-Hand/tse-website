@@ -18,7 +18,7 @@
       <p>Next of Kin: {{ data.nextOfKin }}</p>,
     </div>
 
-    <Button :on-click="logout">Logout</Button>
+    <Button @click="logout">Logout</Button>
 
   </div>
 
@@ -26,6 +26,8 @@
 </template>
 
 <script lang="ts">
+import {navigateTo} from "#app";
+
 definePageMeta({
   middleware: 'user-only'
 })
@@ -73,7 +75,9 @@ export default {
     },
 
     logout() {
+      console.log("logging out")
       auth().logout()
+      navigateTo("/")
     }
 
   }
