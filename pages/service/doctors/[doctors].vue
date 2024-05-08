@@ -48,10 +48,10 @@ Page for Displaying Doctors based on selected symptoms, distance and location
           </div>
 
 
-          <div class="pl-10">
+          <div class="pl-10 flex">
             <!-- The distance from their postcode they are willing to travel -->
             <Slider v-model="distance" class="w-96" :step="5" :min=5 :max=100 />
-            <p class="mx-3"> {{ distance }} (km)</p>
+            <p class="mx-3"> {{ distance }}km</p>
           </div>
         </template>
 
@@ -65,7 +65,7 @@ Page for Displaying Doctors based on selected symptoms, distance and location
     <ScrollTop/>
 
     <div class="text-center justify-center flex py-10">
-      <p>Doctors Found: {{ doctors.length }}</p>
+      <p>{{ doctors.length }} Doctors Found</p>
     </div>
 
     <!-- Creates a card for the doctors information and location -->
@@ -73,13 +73,20 @@ Page for Displaying Doctors based on selected symptoms, distance and location
       <div class="flex-col">
         <div v-for="doctor in doctors" class="pb-5">
 
-
         <div class="max-w-lg rounded border py-5">
           <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">Dr. {{ doctor.forename }} {{ doctor.surname }}</div>
-            <p class="text-gray-700 text-base">
-              {{ doctor.aboutMe }}
-            </p>
+            <div class="grid grid-cols-2">
+              <div>
+                <div class="font-bold text-xl mb-2">Dr. {{ doctor.forename }} {{ doctor.surname }}</div>
+                <p class="text-gray-700 text-base">
+                  {{ doctor.aboutMe }}
+                </p>
+              </div>
+
+              <a :href="generateMailTo(doctor)">
+                <Button class="w-full h-full justify-center" >Email Dr. {{ doctor.surname }}</Button>
+              </a>
+            </div>
           </div>
           <div class="px-6 pt-4 pb-2">
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
@@ -88,15 +95,15 @@ Page for Displaying Doctors based on selected symptoms, distance and location
 
           <div class="border-t">
             <div class="px-6 py-4">
-              <div class="font-bold text-xl mb-2">Practice: {{ doctor.practiceName }}</div>
+              <div class="font-bold text-xl mb-2">{{ doctor.practiceName }}</div>
               <p class="text-gray-700 text-base">
                 {{ doctor.practiceAddress }}
               </p>
-              <p class="text-gray-700 text-base">Email: {{ doctor.email }}</p>
-              <p class="text-gray-700 text-base">Telephone: {{ doctor.phone }}</p>
+              <p class="text-gray-700 text-base"><strong>Email:</strong> {{ doctor.email }}</p>
+              <p class="text-gray-700 text-base"><strong>Phone:</strong> (+44) {{ doctor.phone }}</p>
               <div class="py-2">
-                <p class="text-gray-700 text-base py-2">Distance: {{ doctor.distance.toFixed(1) }}km</p>
-                <p class="text-gray-700 text-base py-2">Similarity: {{ (doctor.similarity * 100).toFixed(2) }}%</p>
+                <p class="text-gray-700 text-base"><strong>Distance:</strong> {{ doctor.distance.toFixed(1) }}km</p>
+                <p class="text-gray-700 text-base"><strong>Similarity:</strong> {{ (doctor.similarity * 100).toFixed(2) }}%</p>
               </div>
             </div>
           </div>
@@ -208,6 +215,10 @@ const handleNewParameters = () => {
     path: `/service/doctors/${newParams}`
   })
 
+}
+
+const generateMailTo = (doctor: MatchedDoctor) => {
+  return `mailto:${doctor.email}`
 }
 
 /**
