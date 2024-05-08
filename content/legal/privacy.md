@@ -3,6 +3,4 @@ title: Privacy Policy
 date: 4th May 2024
 ---
 
-Privacy Policy!
-woiwhfawe
-peepee
+To be filled out by a legal professional
