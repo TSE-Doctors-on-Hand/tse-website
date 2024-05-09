@@ -1,3 +1,8 @@
+<!--
+Platform info template
+
+Displays information of the purpose of Doctors on Hand
+-->
 <template>
   <section class="bg-white">
     <div class="container w-full max-w-5xl mx-auto space-y-4">

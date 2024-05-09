@@ -1,5 +1,11 @@
+<!--
+Download template
+
+Shows app download information for the relevant Doctors on Hand app
+-->
 <template>
   <div class="flex justify-center py-5">
+    <!-- App store download button -->
     <div
         class="flex mt-3 w-48 h-14 bg-transparent text-black border border-black rounded-xl items-center justify-center mr-6">
       <div class="mr-3">
@@ -14,6 +20,7 @@
       </div>
     </div>
 
+    <!-- Google play store download button -->
     <div class="flex mt-3 w-48 h-14 bg-black text-white rounded-lg items-center justify-center ml-6">
       <div class="mr-3">
         <svg viewBox="30 336.7 120.9 129.2" width="30">
