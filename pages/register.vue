@@ -1,3 +1,6 @@
+<!--
+Template for users' wanting to register on the platform
+-->
 <template>
 
   <div class="flex min-h-full flex-col px-6 lg:px-8">
@@ -6,6 +9,7 @@
         Hand</h2>
     </div>
 
+    <!-- Form taking all details needed for the platform -->
     <form class=" sm:mx-auto sm:w-full sm:max-w-md py-12" @submit.prevent="handleRegister">
       <div class="grid gap-12 mb-4">
 
@@ -110,17 +114,29 @@
 
 <script lang="ts">
 
+/**
+ * Middleware to only allow guests to access the login page
+ */
 definePageMeta({
   middleware: 'guest-only'
 })
 
+/**
+ * Imports for assorted functions used
+ */
 import {auth} from "~/composables/auth.js";
 import type {RegisterRequest} from "~/types/api/auth/register";
 
+/**
+ * Reactive Reference for if the registration fails
+ */
 const registerFail = ref()
 
 export default {
 
+  /**
+   * Holds data that the user inputs into the website
+   */
   data: () => ({
     sexes: [{ ordinal: 0, name: "Male"}, {ordinal: 1, name:"Female"}],
     username: "",
@@ -138,7 +154,10 @@ export default {
   }),
   methods: {
 
-
+    /**
+     * Method to handle Registration
+     * Takes all users' inputs and turns them into a Body to be sent to the backend
+     */
     handleRegister() {
 
       const date = new Date(this.dob)
@@ -157,6 +176,9 @@ export default {
         nextOfKin: this.nok
       }
 
+      /**
+       * Attempt to register with the backend. If successful, send them to consultation.
+       */
       auth().register(request).then((bool) => {
         registerFail.value = bool
 
