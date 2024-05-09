@@ -1,3 +1,4 @@
+<!-- Simple slug to throw a 404 error on all unknown routes -->
 <template>
   <div class="py-20 px-6 container max-w-5xl mx-auto">
     <div class="max-w-sm">
