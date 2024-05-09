@@ -1,6 +1,13 @@
+<!--
+Why Platform Template
+
+Shows information of the utility of Doctors on Hand
+-->
+
 <template>
   <h3 class="text-3xl font-bold text-center text-[#005EB8] py-5">Why use Doctors on hand?</h3>
 
+  <!-- Iterator to retrieve all information in boxes  -->
   <div class="flex justify-center">
     <a v-for="box in boxes" class="p-6 block max-w-sm p-6 bg-[#E8EDEE] border border-[#002EB8] rounded-lg shadow mr-6">
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-center text-[#005EB8]">{{ box.header }}</h5>
@@ -11,6 +18,9 @@
 
 <script setup lang="ts">
 
+/**
+ * Header and text data store for all "Why" questions
+ */
 const boxes = [
   {
     header: "Convenience",
