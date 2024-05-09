@@ -32,7 +32,7 @@ This is where the user can view their details and logout of the site
           </div>
           <div class="border-t py-6">
             <!-- A button to allow the user to logout of the website -->
-            <Button @click="logout" class="w-full">Logout</Button>
+            <Button @click="logout" class="w-full justify-center">Logout</Button>
           </div>
         </div>
       </div>
